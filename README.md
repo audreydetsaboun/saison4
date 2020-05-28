@@ -7,5 +7,6 @@ Notions abordées :
 - npm
 - PostgreSQL
 - MVC avec Express
+- Sessions
 
 Pour chaque notion abordée, je tenterai de créer une fiche récap en markdown.

@@ -1,4 +1,4 @@
-# Architecture d'une Application Express en MVC
+# Application Express avec architecture MVC
 
 ### Prérequis NPM : 
 installer les packages express, ejs, dotenv, pg

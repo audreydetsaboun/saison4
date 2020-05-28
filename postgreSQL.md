@@ -98,6 +98,68 @@ Depuis etudiant@teleporteur dans le terminal (et dans le dossier data/ si on ne 
 - sortir de postgres=# : \q
 - sortir de notre bdd : ctrl D
 
+## Connexion avec Express
 
+1. On créé un client (qui va se connecter a un serveur)
+2. on lui spécifie `host`, `user`, `password` et `database` (on lui spécifie a quel endroit se connecter, quel utilisateur utiliser, quel base de donnée et le mot dd passe)
+ 
+```
+Const client = new Client({
+    Host: …,
+    User: …,
+    Password: …,
+    Database: ‘prof’,
+});
+```
 
+3. on lui dit de se connecter
+`client.connect();`
 
+4. on fait nos requêtes
+
+On utilise la méthode query sur le client dans une méthode de dataMapper
+On lui passe en paramètre un callback (et éventuellement une info nécessaire à la requête comme un id par exemple) : 
+
+Exemple pour une liste d'objets à récupérer : 
+   ```
+   getAllFigurines: (callback) => {
+        client.query(`
+            SELECT 
+                figurine.*, 
+                round(avg(review.note)) AS avg_note 
+            FROM figurine
+            JOIN review ON figurine.id = review.figurine_id
+            GROUP BY figurine.id
+            ORDER BY name
+        `, callback);
+    },
+    ```
+
+Exemple pour un seul objet à récupérer : 
+ ```
+    getOneFigurine: (id, callback) => {
+        const preparedQuery = {
+            text: `
+                SELECT
+                    figurine.id AS id,
+                    figurine.name AS name,
+                    figurine.description AS description,
+                    figurine.size AS size,
+                    figurine.price AS price,
+                    figurine.category AS category,
+                    review.author AS author,
+                    review.note AS note,
+                    review.title AS title,
+                    review.message as message,
+                    avg(review.note) OVER() as avg_note
+                FROM figurine 
+                JOIN review ON review.figurine_id = figurine.id
+                WHERE figurine.id = $1
+            `,
+            values: [
+                id
+            ]
+        }
+        client.query(preparedQuery, callback);
+    }
+```

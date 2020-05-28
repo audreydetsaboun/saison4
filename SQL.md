@@ -103,6 +103,9 @@ SELECT *
 ## UPDATE
 
 - ### UPDATE ... SET
+
+Update sert à mettre à jour les informations des champs d'une table.
+
 *ATTENTION : ne pas oublier le `WHERE` sur les `UPDATE` sinon on modifie toutes les lignes.*
 
 ```sql
@@ -111,6 +114,8 @@ WHERE <colonne3>=<value3>;
 ```
 
 - ### ALTER TABLE
+Alter table  sert à modifier la structure d'une table.
+
 Afin de modifier la structure d'un table on peut utiliser la commande `ALTER TABLE` qui est une commande d'encapsulage pour définir différentes actions, comme ajouter (`ADD`), supprimer (`DROP`), modifier (`ALTER`), renommer (`RENAME`) une colonne, ou toute autre opération directement liée à sa structure.
 
 ```SQL

@@ -7,7 +7,7 @@ Notions abordées :
 - SQL 👍
 - npm 👍
 - PostgreSQL 👍
-- Application Express avec architecture MVC
+- Application Express avec architecture MVC 👍
 - Sessions Express-Session
 
 Pour chaque notion abordée, je tenterai de créer une fiche récap en markdown.

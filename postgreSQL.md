@@ -100,66 +100,94 @@ Depuis etudiant@teleporteur dans le terminal (et dans le dossier data/ si on ne 
 
 ## Connexion avec Express
 
-1. On créé un client (qui va se connecter a un serveur)
-2. on lui spécifie `host`, `user`, `password` et `database` (on lui spécifie a quel endroit se connecter, quel utilisateur utiliser, quel base de donnée et le mot dd passe)
- 
-```
+1. On require le package postgreSQL après avoir fait `npm install pg`
+2. On créé un module client dans un fichier client.js (qui va se connecter a un serveur), qu'on require dans dataMapper.js
+3. on lui spécifie `host`, `user`, `password` et `database` (on lui spécifie a quel endroit se connecter, quel utilisateur utiliser, quel base de donnée et le mot dd passe)
+4. on lui dit de se connecter
+`client.connect();`
+
+- __Version Yann__
+```js
 Const client = new Client({
     Host: …,
     User: …,
     Password: …,
     Database: ‘prof’,
 });
+
+client.connect();
 ```
 
-3. on lui dit de se connecter
-`client.connect();`
+- __Version Maxime__
 
-4. on fait nos requêtes
+```js
+const { Client } = require('pg');
 
-On utilise la méthode query sur le client dans une méthode de dataMapper
-On lui passe en paramètre un callback (et éventuellement une info nécessaire à la requête comme un id par exemple) : 
+// On crée un client
+const client = new Client();
 
-Exemple pour une liste d'objets à récupérer : 
-   ```
-   getAllFigurines: (callback) => {
-        client.query(`
-            SELECT 
-                figurine.*, 
-                round(avg(review.note)) AS avg_note 
-            FROM figurine
-            JOIN review ON figurine.id = review.figurine_id
-            GROUP BY figurine.id
-            ORDER BY name
-        `, callback);
-    },
-    ```
+// On connecte le client au serveur
+// en se basant sur les variables d'environements (.env)
+client.connect();
 
-Exemple pour un seul objet à récupérer : 
- ```
-    getOneFigurine: (id, callback) => {
-        const preparedQuery = {
-            text: `
-                SELECT
-                    figurine.id AS id,
-                    figurine.name AS name,
-                    figurine.description AS description,
-                    figurine.size AS size,
-                    figurine.price AS price,
-                    figurine.category AS category,
-                    review.author AS author,
-                    review.note AS note,
-                    review.title AS title,
-                    review.message as message,
-                    avg(review.note) OVER() as avg_note
-                FROM figurine 
-                JOIN review ON review.figurine_id = figurine.id
-                WHERE figurine.id = $1
-            `,
-            values: [
-                id
-            ]
-        }
-        client.query(preparedQuery, callback);
+console.log('-- Client pg connecté');
+
+// On rend le client accessible en dehors du fichier
+// alors qu'il est déjà connecté !
+// On pourra donc utiliser partout la connexion 
+module.exports = client;
+```
+
+
+5. on fait nos requêtes dans le module dataMapper : 
+
+- On require la bdd : 
+```js
+const client = require('./database');
+```
+- On utilise la méthode `query` sur le client dans la méthode de notre module dataMapper
+- On lui passe en paramètre un `callback` (et éventuellement une info nécessaire à la requête comme un id par exemple) : 
+
+**Exemple pour une liste d'objets à récupérer :**
+
+- *via une constante :*
+```js
+getAllCards: function (callback) {
+    const query = {
+      text: `SELECT * FROM "card"`
+    };
+
+    database.query(query, callback);
+}
+```
+- *directement dans le query*
+```js
+getAllPromos: (callback) => {
+    client.query('SELECT * FROM promo', callback);
+}
+```
+
+
+**Exemple pour un seul objet à récupérer (avec la sécurité anti injections) :**
+
+- *via une constante :*
+
+```js
+getCard: function (id, callback) {
+    const query = {
+        text: `SELECT * from "card" WHERE id = $1`,
+        values: [id]
     }
+
+    database.query(query, callback);
+}
+```
+- *directement dans le query*
+
+```js
+getOneStudent: (studentId, callback) => {
+    client.query('SELECT * FROM student WHERE id = $1', [studentId], (error, result) => {
+        callback(error, result);
+    });
+},
 ```

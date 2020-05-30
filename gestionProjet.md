@@ -31,7 +31,7 @@ _Exemple :_
 | Visiteur    | accéder à la page d'accueil        | présententation               | 1      |
 | Visiteur    | accéder à la liste des thématiques | afin de pré filtrer les quizz | 1      |
 | Visiteur    | Créer un compte                    | Pour participer au quizz      | 2      |
-| Visiteur    | Me connecter                       | Pour répondre                 |        | 2 |
+| Visiteur    | Me connecter                       | Pour répondre                 | 2      |
 | Membre      | Se deconnecter                     | -                             | 2      |
 
 ## Préparer les Wireframes :
@@ -60,9 +60,51 @@ Quelques sites gratuits pour réaliser les wireframes :
 
 ## Kanban
 
-Répertorier et classer ce qu’on a a faire, ce qu’on est entrain de faire et ce qu’il reste à faire
+Tableau de suivi qui permet de répertorier et classer :
 
-- Création du Kanban dans l’onglet Projects du repo github
-- Créer 3 colonnes : backlog, in progress, done
+- ce qu’on a à faire : **backlog**,
+- ce qu’on est entrain de faire : **in progress**
+- ce qu’il reste à faire : **done**
 
-- Créer les taches des use cases dans le kanban dans la colonne Backlog
+Etapes :
+
+1. Création du Kanban dans l’onglet Projects du repo github
+
+2. Créer 3 colonnes : backlog, in progress, done
+
+3. Créer les tâches des Use Cases dans la colonne Backlog du Kanban
+
+## Méthode Merise
+
+Conception de la base de données grâce à 2 schémas :
+
+- **MCD** : Modèle Conceptuel de Données
+- **MLD** : Modèle Logique de Données
+
+### MCD
+
+Le MCD permet de réfléchir à ce que vont être :
+
+- les entités : les tables,
+
+- les utilisateurs : les types d'utilisateurs qui accèderont à l'application web,
+
+- les liaisons : lien entre 2 entités,
+
+- les verbes de liaison : qualifie la liaison entre 2 entités. Si on ne trouve pas de mot qualifiant la liaison, on met DF : Dépendances Fonctionnelle,
+
+- les cardinalités : valeur minimal et maximale des associations
+
+Outils de conception gratuit en ligne : http://mocodo.wingi.net/
+
+#### Fiche récap du MCD :
+
+https://github.com/O-clock-Alumni/fiches-recap/blob/master/bdd/conception-03-mcd.md
+
+### MLD
+
+Le MLD permet de voir se dessiner la future base de données. On y retrouve le nom des tables, avec leurs colonnes et leur typage. C'est une étape intermédiaire entre le MCP et le MPD (Modèle Physique de Données).
+
+#### Fiche récap du MLD : https://github.com/O-clock-Alumni/fiches-recap/blob/master/bdd/conception-04-mld.md
+
+#### FIche récap du MPD : https://github.com/O-clock-Alumni/fiches-recap/blob/master/bdd/conception-05-mpd.md

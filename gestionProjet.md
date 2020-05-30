@@ -36,11 +36,19 @@ _Exemple :_
 
 ## Préparer les Wireframes :
 
+Itinéraire d'une maquette :
+
+![itinéraire_maquette](/images/itinéraire_maquette.png)
+
+Dans la partie conception ergonomique, plus précisément le Wireframe :
+
 ![schema_wireframe](/images/wireframe.png)
 
 ### Mobile First
 
 Aujourd'hui, la part des internautes mobile est plus forte que celle des internautes desktop. Il est donc important de réaliser les wireframes d'abord en version mobile puis en version desktop.
+
+![mobile_wireframe](/images/mobile_wireframes.png)
 
 Quelques sites gratuits pour réaliser les wireframes :
 

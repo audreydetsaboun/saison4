@@ -1,9 +1,8 @@
 # Fiche révision de la saison 4 avec O'Clock
 
-Notions abordées : 
+Notions abordées :
 
-- Gestion de projet Agile
-- MLD / MCD
+- Gestion de projet Agile 👍
 - SQL 👍
 - npm 👍
 - PostgreSQL 👍

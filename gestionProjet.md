@@ -74,6 +74,8 @@ Etapes :
 
 3. Créer les tâches des Use Cases dans la colonne Backlog du Kanban
 
+4. Au fur et à mesure de l'avancement des tâches, on glisse les tâches dans les colonnes appropriées
+
 ## Méthode Merise
 
 Conception de la base de données grâce à 2 schémas :

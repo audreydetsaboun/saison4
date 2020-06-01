@@ -6,15 +6,13 @@ Documentation : https://www.npmjs.com/get-npm
 
 (installer node, installe automatiquement npm)
 
-`node -v `
+`node -v`
 
 `npm -v`
-
 
 ## update NPM
 
 `npm install npm@latest -g`
-
 
 ## initier un projet
 
@@ -22,20 +20,18 @@ Cela créera le `package.json`sur lequel seront rattachées les dépendances que
 
 `npm init`
 
-
-## installer des dépendances 
+## installer des dépendances
 
 `npm install express ejs` ou `npm i express ejs`
 
-
 ## lancer le serveur
 
-- `node index.js` 
+- `node index.js`
 - `nodemon index.js` permet de maj dès qu'on modifie les fichiers sans avoir à fermer et relancer le serveur
 
 ## npm run dev / npm start
 
-Aller dans package.json et ajouter les lignes suivantes dans "scripts" : 
+Aller dans package.json et ajouter les lignes suivantes dans "scripts" :
 
 ```
 "scripts": {
@@ -48,11 +44,9 @@ Aller dans package.json et ajouter les lignes suivantes dans "scripts" :
 - équivalent node : `npm start`
 - équivalent nodemon : `npm run dev`
 
-
 ## relancer le serveur sans quitter nodemon ou npm run dev
 
 `rs`
-
 
 ## fermer le serveur
 
@@ -63,3 +57,7 @@ raccourcis clavier : ctrl + C
 sur le port 3000 : `kill -9 $(lsof -t -i:3000)`
 sur le port 1234 : `kill -9 $(lsof -t -i:1234)`
 
+## désinstaller une dépendance
+
+`npm uninstall nom-dépendance`
+`npm uninstall cookie-parser`

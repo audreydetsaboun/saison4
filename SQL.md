@@ -16,18 +16,18 @@ CREATE TABLE IF NOT EXISTS "nom_table1" (
 );
 ```
 
-*Pour les id, on peut rajouter **PRIMARY KEY** qui signifie clé primaire, non nulle et unique dans la colonne (et créé un index).*
+_Pour les id, on peut rajouter **PRIMARY KEY** qui signifie clé primaire, non nulle et unique dans la colonne (et créé un index)._
 
-*__FOREIGN KEY__ veut dire clé étrangère et permet de relier 2 tables entre elles.*
+_**FOREIGN KEY** veut dire clé étrangère et permet de relier 2 tables entre elles._
 
 - ### INSERT INTO
 
 **SERIAL** : créé une fonction automatique qui nous renverra toujours une valeur différente à chaque appel. Pour l’appeler lors des **INSERT INTO** on utilisera le mot clé **DEFAULT** dans la colonne appropriée.
 
 ```sql
-INSERT INTO "table"("id", "name", "element", "level", "value", "visual_name" ) VALUES 
-(DEFAULT, 'Bogomile', null, true, 1, 'Bogomile.jpg' ), 
-(DEFAULT, 'Fungus', null, false, 5, 'Fungus.jpg' ), 
+INSERT INTO "table"("id", "name", "element", "level", "value", "visual_name" ) VALUES
+(DEFAULT, 'Bogomile', null, true, 1, 'Bogomile.jpg' ),
+(DEFAULT, 'Fungus', null, false, 5, 'Fungus.jpg' ),
 (DEFAULT, 'Elmidea', null, true, 1, 'Elmidea.jpg' );
 ```
 
@@ -42,7 +42,7 @@ SELECT <colonne1>, <colonne2> FROM <table>;
 
 - ### WHERE
 
-WHERE permet de filtrer les résultats de la requête : 
+WHERE permet de filtrer les résultats de la requête :
 
 ```sql
 SELECT <colonne> FROM <table> WHERE <colonneN> = x;
@@ -84,7 +84,8 @@ AS permet de nommer différemment les données issus de l’opération.
 SELECT <colonne> AS nouveau_nom FROM <table>;
 ```
 
-Exemple : 
+Exemple :
+
 ```sql
 SELECT first_name AS prénom FROM prof;
 ```
@@ -93,8 +94,8 @@ SELECT first_name AS prénom FROM prof;
 
 ```sql
 SELECT *
-  FROM table1 
-  JOIN table2 
+  FROM table1
+  JOIN table2
     ON table2.foreign_key = table1.primary_key
  WHERE table1.primary_key = $1
 ;
@@ -104,17 +105,17 @@ SELECT *
 
 - ### UPDATE ... SET
 
-Update sert à mettre à jour les informations des champs d'une table.
+Update sert à mettre à jour les informations des champs d'une table. On parle de modification de données.
 
-*ATTENTION : ne pas oublier le `WHERE` sur les `UPDATE` sinon on modifie toutes les lignes.*
+_ATTENTION : ne pas oublier le `WHERE` sur les `UPDATE` sinon on modifie toutes les lignes._
 
 ```sql
-UPDATE <nom_table> SET <colonne1>=<value1>, <colonne2>=<value2> 
+UPDATE <nom_table> SET <colonne1>=<value1>, <colonne2>=<value2>
 WHERE <colonne3>=<value3>;
 ```
 
 - ### ALTER TABLE
-Alter table  sert à modifier la structure d'une table.
+  Alter table sert à modifier la structure d'une table. On parle de modification structurelle.
 
 Afin de modifier la structure d'un table on peut utiliser la commande `ALTER TABLE` qui est une commande d'encapsulage pour définir différentes actions, comme ajouter (`ADD`), supprimer (`DROP`), modifier (`ALTER`), renommer (`RENAME`) une colonne, ou toute autre opération directement liée à sa structure.
 
@@ -126,15 +127,12 @@ ALTER TABLE <nom_table>
     DROP COLUMN <colonne3>;
 ```
 
-
-
-
 ## DELETE
 
 _**attention existe mais COMMANDES DANGEREUSES !!!**_
 
 - ### DELETE
-  
+
 ```sql
 DELETE FROM prof WHERE id=4; -- ne jamais DELETE sans un WHERE
 ```
@@ -157,14 +155,14 @@ DROP TABLE <nom_table>;
 
 <hr>
 
-
 ## QUELQUES FONCTIONS SQL
 
 - ### count()
 
-La fonction `count()` permet de compter le nombre d’enregistrements au lieux de sortir chacune d’elles. 
+La fonction `count()` permet de compter le nombre d’enregistrements au lieux de sortir chacune d’elles.
 
-Elle peut être limitée par un filtre `WHERE` : 
+Elle peut être limitée par un filtre `WHERE` :
+
 ```sql
 SELECT count(*) AS nombre_prof_JS FROM prof WHERE Spe_js = true;
 ```

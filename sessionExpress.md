@@ -16,14 +16,14 @@ Les cookies apparaissent en clair dans les headers côté client. C'est donc dif
   npm install express-session
   ```
 
-- dans le server :
+- dans le server dans `index.js` :
   ```js
   const session = require('express-session');
   ```
 
 ## Lancer une session
 
-Pour lancer une session, voici le code suivant (extrait de la documentation) :
+Pour lancer une session, voici le code suivant (extrait de la documentation) dans `index.js` :
 
 ```js
 var app = express()

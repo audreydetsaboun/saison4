@@ -35,11 +35,11 @@ Ce qui nous fait arriver sur : `postgres#`
 
 ### Créer un Utilisateur de BDD
 
-`CREATE ROLE nom_user WITH LOGIN PASSWORD ‘mdp’;`
+`CREATE ROLE nom_user WITH LOGIN PASSWORD 'mdp';`
 
 ou crypté :
 
-`CREATE ROLE nom_user WITH LOGIN ENCRYPTED PASSWORD ‘mdp’;`
+`CREATE ROLE nom_user WITH LOGIN ENCRYPTED PASSWORD 'mdp';`
 
 ### Se connecter à un utilisateur qu'on a créé
 
@@ -49,13 +49,16 @@ Ca demande le mot de passe : se mot de passe restera transparent. Taper sur entr
 
 ### Modifier le mot de passe d'un utilisateur
 
-`ALTER ROLE trombi PASSWORD ‘lenouveaupsw'`
+`ALTER ROLE trombi PASSWORD 'lenouveaupsw'`
 
 ### Créer une BDD
 
-`CREATE DATABASE nom_bdd OWNER ‘nom_user’;`
+`CREATE DATABASE nom_bdd OWNER 'nom_user';`
 
-### Se connecter à une BDD qu'on a créé
+### Se connecter à une BDD qu'on a créé / importer des données
+
+Sortir de `postgres#` avec ctrl + d.
+Sortir de `postgres@teleporteur:~$` avec ctrl + d.
 
 `psql -U nom_user -d nom_bdd -f fichier.sql`
 

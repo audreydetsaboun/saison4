@@ -1,9 +1,9 @@
 # PostgreSQL
 
 Documentation PostgreSQL :
+
 - https://www.postgresql.org/docs/
 - https://node-postgres.com
-
 
 ## DANS LE TERMINAL
 
@@ -11,7 +11,7 @@ Documentation PostgreSQL :
 
 `npm i pg` ou `npm install pg`
 
-#### sur mac 
+#### sur mac
 
 passer par brew : c'est un gestionnaire de package, s'il est installé sur ton mac, il suffit de faire `brew install postgresql` : https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3
 
@@ -23,19 +23,23 @@ passer par brew : c'est un gestionnaire de package, s'il est installé sur ton m
 
 `sudo -i -u postgres`
 
+Ce qui nous fait arriver sur : `postgres@teleporteur:~$`
+
+`psql`
+
 Ce qui nous fait arriver sur : `postgres#`
 
 ### Afficher tous les utilisateurs de bdd existants
+
 `\l`
 
 ### Créer un Utilisateur de BDD
 
 `CREATE ROLE nom_user WITH LOGIN PASSWORD ‘mdp’;`
 
-ou crypté : 
+ou crypté :
 
 `CREATE ROLE nom_user WITH LOGIN ENCRYPTED PASSWORD ‘mdp’;`
-
 
 ### Se connecter à un utilisateur qu'on a créé
 
@@ -43,21 +47,17 @@ ou crypté :
 
 Ca demande le mot de passe : se mot de passe restera transparent. Taper sur entrer pour valider.
 
-
 ### Modifier le mot de passe d'un utilisateur
 
 `ALTER ROLE trombi PASSWORD ‘lenouveaupsw'`
-
 
 ### Créer une BDD
 
 `CREATE DATABASE nom_bdd OWNER ‘nom_user’;`
 
-
 ### Se connecter à une BDD qu'on a créé
 
-`psql -U nom_user -d nom_bdd -f fichier.sql `
-
+`psql -U nom_user -d nom_bdd -f fichier.sql`
 
 ## DANS VSC
 
@@ -75,23 +75,21 @@ PGPORT=5432
 ```
 
 - version courte avec PG_URL
-  
+
 `PG_URL=psql://PGUSER:PGPASSWORD@PGHOST:PGPORT`
 
 Ex :
 `PG_URL=psql://trombi:trombi@localhost:5432/trombi`
 
-Ex sur serveur distant : 
+Ex sur serveur distant :
 `PG_URL=psql://PGUSER:PGPASSWORD@PGHOST:PGPORT`
 `PG_URL=psql://trombi:trombi@database.server.com:5432/trombi`
 
-
 ### Connecter la BDD avec un fichier.sql
 
-Depuis etudiant@teleporteur dans le terminal (et dans le dossier data/ si on ne veut pas devoir écrire le chemin pour y accéder): 
+Depuis etudiant@teleporteur dans le terminal (et dans le dossier data/ si on ne veut pas devoir écrire le chemin pour y accéder):
 
-`psql -U nom_bdd -f chemin/database.sql` 
-
+`psql -U nom_bdd -f chemin/database.sql`
 
 ### Déconnecter la BDD
 
@@ -104,9 +102,10 @@ Depuis etudiant@teleporteur dans le terminal (et dans le dossier data/ si on ne 
 2. On créé un module client dans un fichier client.js (qui va se connecter a un serveur), qu'on require dans dataMapper.js
 3. on lui spécifie `host`, `user`, `password` et `database` (on lui spécifie a quel endroit se connecter, quel utilisateur utiliser, quel base de donnée et le mot dd passe)
 4. on lui dit de se connecter
-`client.connect();`
+   `client.connect();`
 
-- __Version Yann__
+- **Version Yann**
+
 ```js
 Const client = new Client({
     Host: …,
@@ -118,7 +117,7 @@ Const client = new Client({
 client.connect();
 ```
 
-- __Version Maxime__
+- **Version Maxime**
 
 ```js
 const { Client } = require('pg');
@@ -134,23 +133,25 @@ console.log('-- Client pg connecté');
 
 // On rend le client accessible en dehors du fichier
 // alors qu'il est déjà connecté !
-// On pourra donc utiliser partout la connexion 
+// On pourra donc utiliser partout la connexion
 module.exports = client;
 ```
 
+5. on fait nos requêtes dans le module dataMapper :
 
-5. on fait nos requêtes dans le module dataMapper : 
+- On require la bdd :
 
-- On require la bdd : 
 ```js
 const client = require('./database');
 ```
+
 - On utilise la méthode `query` sur le client dans la méthode de notre module dataMapper
-- On lui passe en paramètre un `callback` (et éventuellement une info nécessaire à la requête comme un id par exemple) : 
+- On lui passe en paramètre un `callback` (et éventuellement une info nécessaire à la requête comme un id par exemple) :
 
 **Exemple pour une liste d'objets à récupérer :**
 
-- *via une constante :*
+- _via une constante :_
+
 ```js
 getAllCards: function (callback) {
     const query = {
@@ -160,17 +161,18 @@ getAllCards: function (callback) {
     database.query(query, callback);
 }
 ```
-- *directement dans le query*
+
+- _directement dans le query_
+
 ```js
 getAllPromos: (callback) => {
-    client.query('SELECT * FROM promo', callback);
-}
+  client.query('SELECT * FROM promo', callback);
+};
 ```
-
 
 **Exemple pour un seul objet à récupérer (avec la sécurité anti injections) :**
 
-- *via une constante :*
+- _via une constante :_
 
 ```js
 getCard: function (id, callback) {
@@ -182,7 +184,8 @@ getCard: function (id, callback) {
     database.query(query, callback);
 }
 ```
-- *directement dans le query*
+
+- _directement dans le query_
 
 ```js
 getOneStudent: (studentId, callback) => {

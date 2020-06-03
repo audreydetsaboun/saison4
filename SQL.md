@@ -20,6 +20,10 @@ _Pour les id, on peut rajouter **PRIMARY KEY** qui signifie clé primaire, non n
 
 _**FOREIGN KEY** veut dire clé étrangère et permet de relier 2 tables entre elles._
 
+#### UNIQUE
+
+Faire qu'un champs soit unique (par exemple il ne peut pas avoir 2 fois la même valeur dans la colonne)
+
 - ### INSERT INTO
 
 **SERIAL** : créé une fonction automatique qui nous renverra toujours une valeur différente à chaque appel. Pour l’appeler lors des **INSERT INTO** on utilisera le mot clé **DEFAULT** dans la colonne appropriée.

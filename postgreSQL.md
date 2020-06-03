@@ -47,6 +47,15 @@ ou crypté :
 
 Ca demande le mot de passe : se mot de passe restera transparent. Taper sur entrer pour valider.
 
+### Afficher les tables
+
+- Lister les tables accessibles :
+  `\dt`
+  => Discribe table
+
+- Donne la description de la table prof :
+  `\d prof`
+
 ### Modifier le mot de passe d'un utilisateur
 
 `ALTER ROLE trombi PASSWORD 'lenouveaupsw'`
